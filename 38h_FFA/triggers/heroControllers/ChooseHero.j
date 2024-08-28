@@ -30,6 +30,7 @@ call IssueNeutralTargetOrderById(p, gg_unit_nmrf_0134, 852566, u )
 call IssueNeutralTargetOrderById(p, gg_unit_harm_0113, 852566, u )
 call IssueNeutralTargetOrderById(p, gg_unit_hars_0137, 852566, u )
 call IssueNeutralTargetOrderById(p, gg_unit_edob_0140, 852566, u )
+call IssueNeutralTargetOrderById(p, gg_unit_npgr_0141, 852566, u )
 set p=null
 set u=null
 endfunction

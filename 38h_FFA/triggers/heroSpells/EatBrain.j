@@ -13,13 +13,14 @@ local integer i=GetHandleId(tm)
 local unit t=LoadUnitHandle(udg_Hash3,i,2)
 local unit u
 local real r=0
-
+local integer in=0
 
 if UnitHasBuffBJ(t,'BUhf') then
 set u=LoadUnitHandle(udg_Hash3,i,1)
-set r=75*GetUnitAbilityLevel(u,'A03L')
-call SetUnitState( u, UNIT_STATE_LIFE, GetUnitState(u, UNIT_STATE_LIFE)+r )
-call UnitDamageTarget( CreateUnit(GetOwningPlayer(u),'n00T',0,0,0), t, r, true, false, ATTACK_TYPE_HERO, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS )
+set r=50*GetUnitAbilityLevel(u,'A03L')
+set in=GetHeroInt(u,true)
+call SetUnitState( u, UNIT_STATE_LIFE, GetUnitState(u, UNIT_STATE_LIFE)+r+in )
+call UnitDamageTarget( CreateUnit(GetOwningPlayer(u),'n00T',0,0,0), t, r+in, true, false, ATTACK_TYPE_HERO, DAMAGE_TYPE_MAGIC, WEAPON_TYPE_WHOKNOWS )
 call DestroyEffect( AddSpecialEffectTarget("Abilities\\Spells\\Items\\AIil\\AIilTarget.mdl", t, "chest") )
 endif
 

@@ -7,11 +7,33 @@ function Trig_sanxiangzhili_Conditions takes nothing returns boolean
 endfunction
 
 
+function asdyidongspeed takes unit u returns real
+local real r=GetUnitDefaultMoveSpeed(u)
+local integer n=GetConvertedPlayerId(GetOwningPlayer(u))
+local real o=I2R(LoadInteger(udg_Hash6,n,14))
+local real t=I2R(LoadInteger(udg_Hash6,n,29))
+local real s=0.00
+if IsUnitType(u, UNIT_TYPE_HERO) then
+  if r+o>522.00 then
+  return 522.00
+  else
+  return r+o
+  endif
+else
+  set s=r*(1+0.05*t)
+  if s>522.00 then
+  return 522.00
+  else
+  return s
+  endif
+endif
+endfunction
+
 function jiansugroup takes nothing returns nothing
 local unit t=GetEnumUnit()
 local unit u=LoadUnitHandle(udg_Hash1,GetHandleId(gg_trg_sanxiangzhili),1)
 if IsUnitAlly(t, GetOwningPlayer(u))==false and GetUnitState(t, UNIT_STATE_LIFE) >0.00 and GetUnitAbilityLevel(t,'Aloc')==0 and IsUnitType(t, UNIT_TYPE_MECHANICAL) ==false  and IsUnitType(t, UNIT_TYPE_GIANT) == false then
-call SetUnitMoveSpeed( t, GetUnitDefaultMoveSpeed(t)-GetHeroInt(u,true) )
+call SetUnitMoveSpeed( t, asdyidongspeed(t)-GetHeroInt(u,true) )
 endif
 set t=null
 set u=null
@@ -44,7 +66,7 @@ loop
 set t=FirstOfGroup(f)
 exitwhen t==null
 if IsUnitAlly(t,p)==false and GetUnitState(t, UNIT_STATE_LIFE) >0.00 and GetUnitAbilityLevel(t,'Aloc')==0 and IsUnitType(t, UNIT_TYPE_MECHANICAL) ==false  and IsUnitType(t, UNIT_TYPE_GIANT) == false and IsUnitInGroup(t, g)==false then
-call SetUnitMoveSpeed( t, GetUnitDefaultMoveSpeed(t)-GetHeroInt(u,true) )
+call SetUnitMoveSpeed( t, asdyidongspeed(t)-GetHeroInt(u,true) )
 call GroupAddUnit(g,t)
 endif
 call GroupRemoveUnit(f,t)
@@ -57,14 +79,14 @@ else
 loop
 set t=FirstOfGroup(g)
 exitwhen t==null
-call SetUnitMoveSpeed( t, GetUnitDefaultMoveSpeed(t))
+call SetUnitMoveSpeed( t, asdyidongspeed(t))
 call GroupRemoveUnit(g,t)
 set t=null
 endloop
 call SetPlayerAbilityAvailable( GetOwningPlayer(u), 'A0E3', true )
 call GroupClear(g)
 call DestroyGroup(g)
-call SetUnitMoveSpeed( u, GetUnitDefaultMoveSpeed(u))
+call SetUnitMoveSpeed( u, asdyidongspeed(u))
 call FlushChildHashtable( udg_Hash1, i )
 call PauseTimer(tm)
 call DestroyTimer(tm)
@@ -96,7 +118,7 @@ call SaveGroupHandle(udg_Hash1,i,3,g)
 call SaveReal(udg_Hash1,i,4,x)
 call SaveReal(udg_Hash1,i,5,y)
 call ForGroup(g,function jiansugroup)
-call SetUnitMoveSpeed( u, GetUnitDefaultMoveSpeed(u)+GetHeroAgi(u,true) )
+call SetUnitMoveSpeed( u, asdyidongspeed(u)+GetHeroAgi(u,true) )
 call TimerStart(tm,0.5,true,function diaosanxiangaa)
 set u=null
 set tm=null

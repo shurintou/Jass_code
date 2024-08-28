@@ -1,5 +1,3 @@
-//***************************************************************************
-//*
 //*  Triggers
 //*
 //***************************************************************************
@@ -113,6 +111,7 @@ call UnitShareVision( gg_unit_nmr6_0106, p, true )
 call UnitShareVision( gg_unit_nmr7_0107, p, true ) 
 call UnitShareVision( gg_unit_hars_0137, p, true )
 call UnitShareVision( gg_unit_edob_0140, p, true )
+call UnitShareVision( gg_unit_npgr_0141, p, true )
 call SetPlayerState( p, PLAYER_STATE_RESOURCE_FOOD_CAP, 1+i )
 if 1+i==60 then
 call SetPlayerState( p, PLAYER_STATE_RESOURCE_FOOD_CAP, 0 )
@@ -187,6 +186,7 @@ function Trig_Start_Actions takes nothing returns nothing
     set udg_Hash3 =InitHashtable(  )
     set udg_Hash4 =InitHashtable(  )//杀人书剑盾即紫怨血精石专用
     set udg_Hash5 =InitHashtable(  )//单位受伤害事件
+    set udg_Hash6 =InitHashtable(  )//符文
     call ShowUnit( gg_unit_Hamg_0130, false )
     call ShowUnit( gg_unit_Ewrd_0109, false )
     call SetUnitInvulnerable( gg_unit_Hamg_0130, true )// 一开始先隐藏刘弟
@@ -239,24 +239,24 @@ function Trig_Start_Actions takes nothing returns nothing
     set udg_ReviveY[7]=-3390
     set udg_ReviveX[8]=-5700
     set udg_ReviveY[8]=1655
-    set udg_CreepRect[1] = gg_rct_001
-    set udg_CreepRect[2] = gg_rct_002
-    set udg_CreepRect[3] = gg_rct_003
-    set udg_CreepRect[4] = gg_rct_004
-    set udg_CreepRect[5] = gg_rct_005
-    set udg_CreepRect[6] = gg_rct_006
-    set udg_CreepRect[7] = gg_rct_007
-    set udg_CreepRect[8] = gg_rct_008
-    set udg_CreepRect[9] = gg_rct_009
-    set udg_CreepRect[10] = gg_rct_010
-    set udg_CreepRect[11] = gg_rct_011
-    set udg_CreepRect[12] = gg_rct_012
-    set udg_CreepRect[13] = gg_rct_013
-    set udg_CreepRect[14] = gg_rct_014
-    set udg_CreepRect[15] = gg_rct_015
-    set udg_CreepRect[16] = gg_rct_016
-    set udg_CreepRect[17] = gg_rct_017
-    set udg_CreepRect[18] = gg_rct_018
+    set udg_CreepRect[1] = gg_rct______________001
+    set udg_CreepRect[2] = gg_rct______________002
+    set udg_CreepRect[3] = gg_rct______________003
+    set udg_CreepRect[4] = gg_rct______________004
+    set udg_CreepRect[5] = gg_rct______________005
+    set udg_CreepRect[6] = gg_rct______________006
+    set udg_CreepRect[7] = gg_rct______________007
+    set udg_CreepRect[8] = gg_rct______________008
+    set udg_CreepRect[9] = gg_rct______________009
+    set udg_CreepRect[10] = gg_rct______________010
+    set udg_CreepRect[11] = gg_rct______________011
+    set udg_CreepRect[12] = gg_rct______________012
+    set udg_CreepRect[13] = gg_rct______________013
+    set udg_CreepRect[14] = gg_rct______________014
+    set udg_CreepRect[15] = gg_rct______________015
+    set udg_CreepRect[16] = gg_rct______________016
+    set udg_CreepRect[17] = gg_rct______________017
+    set udg_CreepRect[18] = gg_rct______________018
     set udg_XMAX = GetRectMaxX(GetPlayableMapRect())
     set udg_YMAX = GetRectMaxY(GetPlayableMapRect())
     set udg_XMIN = GetRectMinX(GetPlayableMapRect())
